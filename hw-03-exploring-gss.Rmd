@@ -52,6 +52,7 @@ You can load them by running the following in your Console:
 ```{r load-packages, message = FALSE, eval = TRUE}
 library(tidyverse)
 library(dsbox)
+library(tidymodels)
 ```
 
 ## Data
@@ -154,7 +155,11 @@ gss16 %>%
     Interpret the slopes for each of these variables.
     
 ```{r}
-  
+email_fit <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(email ~ educ + wrkstat + snap_insta, data = gss16)
+
+tidy(email_fit)
 ```
 
 9.  Create a predicted values vs. residuals plot for this model.
