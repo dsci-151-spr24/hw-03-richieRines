@@ -165,6 +165,7 @@ tidy(email_fit)
 9.  Create a predicted values vs. residuals plot for this model.
     Are there any issues with the model?
     If yes, describe them.
+    
 
 🧶 ✅ ⬆️ Knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.*
 
@@ -194,6 +195,15 @@ Responses that were originally Don't know, No answer and Not applicable are alre
 10. In a new variable, recode `advfront` such that Strongly Agree and Agree are mapped to `"Yes"`, and Disagree and Strongly disagree are mapped to `"No"`.
     The remaining levels can be left as is.
     Don't overwrite the existing `advfront`, instead pick a different, informative name for your new variable.
+    
+```{r}
+gss16 <- gss16 %>%
+  mutate(advfront_agree = case_when(
+    advfront %in% c("Strongly agree", "Agree") ~ "Yes",
+    advfront %in% c("Strongly disagree", "Disagree") ~ "No",
+    TRUE ~ advfront
+  ))
+```
 
 11. In a new variable, recode `polviews` such that Extremely liberal, Liberal, and Slightly liberal, are mapped to `"Liberal"`, and Slghtly conservative, Conservative, and Extrmly conservative disagree are mapped to `"Conservative"`.
     The remaining levels can be left as is.
