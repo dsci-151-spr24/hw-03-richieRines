@@ -209,6 +209,17 @@ gss16 <- gss16 %>%
     The remaining levels can be left as is.
     Make sure that the levels are in a reasonable order.
     Don't overwrite the existing `polviews`, instead pick a different, informative name for your new variable.
+ 
+```{r}   
+gss16 <- gss16 %>%
+  mutate(beliefs = recode(polviews,
+                            `Extremely liberal` = "Liberal",
+                            `Liberal` = "Liberal",
+                            `Slightly liberal` = "Liberal",
+                            `Slghtly conservative` = "Conservative",
+                            `Extrmly conservative` = "Conservative",
+                            `Conservative` = "Conservative"))
+```
 
 12. Create a visualization that displays the relationship between these two new variables and interpret it.
 
