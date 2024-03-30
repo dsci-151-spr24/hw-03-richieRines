@@ -166,6 +166,17 @@ tidy(email_fit)
     Are there any issues with the model?
     If yes, describe them.
     
+```{r}
+#unsure if this is a good way to do it but I think it works
+
+email_augment <- augment(email_fit$fit)
+
+email_augment %>%
+  ggplot(aes(x = .fitted, y = .resid)) +
+  geom_point() +
+  labs(x = "Predicted",
+       y = "Residual")
+```
 
 🧶 ✅ ⬆️ Knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.*
 
@@ -222,6 +233,13 @@ gss16 <- gss16 %>%
 ```
 
 12. Create a visualization that displays the relationship between these two new variables and interpret it.
+
+```{r}
+gss16 %>%
+  ggplot(aes(x = beliefs, fill = advfront_agree)) +
+  geom_bar() +
+  labs(title = "Beliefs (Liberal/Conservative) and Support for Science", x = "Belief", fill = "Support Science")
+```
 
 🧶 ✅ ⬆️ Knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards and review the md document on GitHub to make sure you're happy with the final state of your work.*
 
